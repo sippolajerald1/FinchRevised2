@@ -40,9 +40,23 @@ namespace FinchRevised
         static void Main(string[] args)
         {
             SetTheme();
+            UpdateTheme();
             DisplayWelcomeScreen();
             DisplayMainMenu();
             DisplayClosingScreen();
+        }
+
+        static void UpdateTheme()
+        {
+            string dpath = @"Data\UpdateTheme.txt";
+
+            string colorString;
+            ConsoleColor backgroundColor;
+
+            colorString = File.ReadAllText(dpath);
+            Enum.TryParse(colorString, out backgroundColor);
+
+            Console.BackgroundColor = backgroundColor;
         }
 
         static void SetTheme()
@@ -245,6 +259,8 @@ namespace FinchRevised
 
             } while (!quitApplication);
         }
+
+
 
         static List<Command> DisplayReadUserProgrammingData()
         {
